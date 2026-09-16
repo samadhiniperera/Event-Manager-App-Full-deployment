@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 const RegistrationForm = ({ onSwitchToLogin, onRegistrationSuccess }) => {
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ const RegistrationForm = ({ onSwitchToLogin, onRegistrationSuccess }) => {
     try {
       console.log('🚀 Starting user registration...');
 
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const response = await fetch(API_BASE_URL + '/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

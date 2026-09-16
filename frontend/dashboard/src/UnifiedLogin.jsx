@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from './supabaseClient';
 import { Eye, EyeOff, Mail, Lock, User, LogIn } from 'lucide-react';
+import { API_BASE_URL } from './config';
 
 const UnifiedLogin = () => {
   const [email, setEmail] = useState('');
@@ -47,7 +48,7 @@ const UnifiedLogin = () => {
     try {
       console.log('🚀 Starting attendee signup...');
 
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const response = await fetch(API_BASE_URL + '/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +170,7 @@ const UnifiedLogin = () => {
       console.log('✅ Login successful, checking organizer role...');
 
       // Step 2: Verify organizer role via API
-      const apiResponse = await fetch('http://localhost:3000/api/auth/verify-organizer', {
+      const apiResponse = await fetch(API_BASE_URL + '/api/auth/verify-organizer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

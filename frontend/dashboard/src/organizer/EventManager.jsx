@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { Calendar, Plus, Edit, Trash2, ArrowLeft, Save, X, RefreshCw } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 function EventManager() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function EventManager() {
       setUser(session.user);
       
       // Verify organizer status
-      const response = await fetch('http://localhost:3000/api/auth/verify-organizer', {
+      const response = await fetch(API_BASE_URL + '/api/auth/verify-organizer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ function EventManager() {
 
       const token = session.access_token;
 
-      const response = await fetch('http://localhost:3000/api/organizer/events', {
+      const response = await fetch(API_BASE_URL + '/api/organizer/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ function EventManager() {
 
       const token = session.access_token;
 
-      const response = await fetch('http://localhost:3000/api/organizer/categories', {
+      const response = await fetch(API_BASE_URL + '/api/organizer/categories', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -162,8 +163,8 @@ function EventManager() {
       const token = session.access_token;
 
       const url = editingEvent 
-        ? `http://localhost:3000/api/organizer/events/${editingEvent.event_id}`
-        : 'http://localhost:3000/api/organizer/events';
+        ? `${API_BASE_URL}/api/organizer/events/${editingEvent.event_id}`
+        : API_BASE_URL + '/api/organizer/events';
 
       const method = editingEvent ? 'PUT' : 'POST';
 
@@ -216,7 +217,7 @@ function EventManager() {
 
       const token = session.access_token;
 
-      const response = await fetch(`http://localhost:3000/api/organizer/events/${eventId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/organizer/events/${eventId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

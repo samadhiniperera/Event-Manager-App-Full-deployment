@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
+import { API_BASE_URL } from './config';
 
 function AuthCallback() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function AuthCallback() {
         // For Google OAuth users, we need to create/update their profile
         if (session.user.app_metadata.provider === 'google') {
           try {
-            const response = await fetch('http://localhost:3000/api/auth/google-callback', {
+            const response = await fetch(API_BASE_URL + '/api/auth/google-callback', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

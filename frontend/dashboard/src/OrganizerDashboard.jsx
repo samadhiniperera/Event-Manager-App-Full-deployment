@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 import { Calendar, DollarSign, Users, Bell, LogOut, AlertCircle } from 'lucide-react';
+import { API_BASE_URL } from './config';
 
 function OrganizerDashboard() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function OrganizerDashboard() {
       console.log('🔍 Checking organizer access for:', session.user.email);
 
       // Verify organizer status with backend
-      const response = await fetch('http://localhost:3000/api/auth/verify-organizer', {
+      const response = await fetch(API_BASE_URL + '/api/auth/verify-organizer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

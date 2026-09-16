@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { DollarSign, Plus, Edit, Trash2, ArrowLeft, Save, X, RefreshCw, Database } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 function ExpensesManager() {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function ExpensesManager() {
       setUser(session.user);
       
       // Verify organizer status
-      const response = await fetch('http://localhost:3000/api/auth/verify-organizer', {
+      const response = await fetch(API_BASE_URL + '/api/auth/verify-organizer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ function ExpensesManager() {
 
       const token = session.access_token;
 
-      const response = await fetch('http://localhost:3000/api/organizer/expenses', {
+      const response = await fetch(API_BASE_URL + '/api/organizer/expenses', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +139,7 @@ function ExpensesManager() {
 
       const token = session.access_token;
 
-      const response = await fetch('http://localhost:3000/api/organizer/events', {
+      const response = await fetch(API_BASE_URL + '/api/organizer/events', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -178,8 +179,8 @@ function ExpensesManager() {
       const token = session.access_token;
 
       const url = editingExpense 
-        ? `http://localhost:3000/api/organizer/expenses/${editingExpense.expense_id}`
-        : 'http://localhost:3000/api/organizer/expenses';
+        ? `${API_BASE_URL}/api/organizer/expenses/${editingExpense.expense_id}`
+        : API_BASE_URL + '/api/organizer/expenses';
 
       const method = editingExpense ? 'PUT' : 'POST';
 
@@ -234,7 +235,7 @@ function ExpensesManager() {
 
       const token = session.access_token;
 
-      const response = await fetch(`http://localhost:3000/api/organizer/expenses/${expenseId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/organizer/expenses/${expenseId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -267,7 +268,7 @@ function ExpensesManager() {
 
       const token = session.access_token;
 
-      const response = await fetch('http://localhost:3000/api/organizer/setup-expenses', {
+      const response = await fetch(API_BASE_URL + '/api/organizer/setup-expenses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

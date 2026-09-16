@@ -19,6 +19,7 @@ import CommitteeManager from './organizer/CommitteeManager';
 import NoticesManager from './organizer/NoticesManager';
 
 import './App.css';
+import { API_BASE_URL } from './config';
 
 // ============================================================================
 // SIMPLE ORGANIZER CHECK HOOK
@@ -47,7 +48,7 @@ function useOrganizerCheck() {
       console.log('✅ Session found, checking role for:', session.user.email);
 
       // Use the API to check organizer status
-      const response = await fetch('http://localhost:3000/api/auth/verify-organizer', {
+      const response = await fetch(API_BASE_URL + '/api/auth/verify-organizer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
