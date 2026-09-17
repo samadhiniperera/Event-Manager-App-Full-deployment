@@ -3,6 +3,7 @@
 // ============================================================================
 
 import React, { useState, useEffect } from 'react'; // React hooks for state and lifecycle
+import { API_BASE_URL } from '../src/config';
 // Note: The original file had a dependency on '../src/App.css', which is a relative path.
 // I will remove the potentially incorrect relative import as it's not present in the provided context.
 
@@ -38,7 +39,7 @@ const AttendanceSection = ({ eventId }) => {
   const fetchAttendance = async () => {
     try {
       // Fetch attendance data from backend
-      const response = await fetch(`http://localhost:3000/api/events/${eventId}/attendance`);
+      const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/attendance`);
       const data = await response.json();
       
       // Update state with fetched data
@@ -94,7 +95,7 @@ const AttendanceSection = ({ eventId }) => {
     setLoading(true);
     try {
       // Send POST request to mark attendance
-      const response = await fetch(`http://localhost:3000/api/events/${eventId}/attend`, {
+      const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/attend`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,7 +132,7 @@ const AttendanceSection = ({ eventId }) => {
     setLoading(true);
     try {
       // Send DELETE request to remove attendance
-      const response = await fetch(`http://localhost:3000/api/events/${eventId}/attend`, {
+      const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/attend`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

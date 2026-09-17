@@ -3,6 +3,7 @@
 // ============================================================================
 
 import React, { useState, useEffect } from 'react';  // React hooks for state and lifecycle
+import { API_BASE_URL } from '../src/config';
 
 // ============================================================================
 // RATINGSECTION COMPONENT
@@ -57,7 +58,7 @@ const RatingSection = ({ eventId, eventStatus }) => {
   const fetchRatings = async () => {
     try {
       // Send GET request to fetch ratings data
-      const response = await fetch(`http://localhost:3000/api/events/${eventId}/rating`);
+      const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/rating`);
       const data = await response.json();
       
       // Update state with fetched data
@@ -77,7 +78,7 @@ const RatingSection = ({ eventId, eventStatus }) => {
     try {
       // Send GET request to check if user already rated
       const response = await fetch(
-        `http://localhost:3000/api/events/${eventId}/check-rating/${userName.trim()}`
+        `${API_BASE_URL}/api/events/${eventId}/check-rating/${userName.trim()}`
       );
       const data = await response.json();
       
@@ -116,7 +117,7 @@ const RatingSection = ({ eventId, eventStatus }) => {
     try {
       // Send POST request to submit rating
       const response = await fetch(
-        `http://localhost:3000/api/events/${eventId}/rating`,
+        `${API_BASE_URL}/api/events/${eventId}/rating`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
