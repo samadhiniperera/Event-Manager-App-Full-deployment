@@ -2,15 +2,12 @@
 
 RESTful API backend for Event Management system with Supabase integration, role-based authentication, and comprehensive event management endpoints.
 
-**🔗 Repository**: https://github.com/samadhiniperera/Event-Manager-App-backend-deployment.git (this repo contains both `backend/` and `frontend/dashboard/` — deployed to Vercel as two separate projects)
+**🔗 Frontend Repository**: https://github.com/samadhiniperera/deploy-frontend.git
 
-## 🚀 Live Deployment
-- **Frontend**: https://peraversefrontend.vercel.app
-- **Backend API**: https://event-manager-app-backend-deploymen.vercel.app
+## 🚀 Live API
+Deployed backend URL - https://event-manager-app-jade.vercel.app
 
-**API Documentation**:
-- Production (Swagger UI): https://event-manager-app-backend-deploymen.vercel.app/api-docs
-- Local dev: http://localhost:3000/api-docs
+**API Documentation**: http://localhost:3000/api-docs (Swagger UI)
 
 ## ✨ Features
 
@@ -138,14 +135,14 @@ PORT=3000
 NODE_ENV=development
 
 # Frontend
-FRONTEND_URL=https://peraversefrontend.vercel.app/
+FRONTEND_URL=https://eventmanagerfrontend.vercel.app/
 ```
 
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/samadhiniperera/Event-Manager-App-backend-deployment.git
-cd Event-Manager-App-backend-deployment/backend
+git clone https://github.com/yourusername/event-management-backend.git
+cd event-management-backend
 
 # Install dependencies
 npm install
@@ -154,13 +151,6 @@ npm install
 npm start
 
 # Run with nodemon (auto-restart)
-npm run dev
-```
-
-To run the frontend locally instead:
-```bash
-cd Event-Manager-App-backend-deployment/frontend/dashboard
-npm install
 npm run dev
 ```
 
@@ -244,12 +234,8 @@ railway up
 ```
 
 ### Vercel (Serverless)
-
-This repo is deployed to Vercel as **two separate projects** from the same GitHub repo:
-
-**Backend** — Root Directory: `backend`
 ```json
-// backend/vercel.json
+// vercel.json
 {
   "version": 2,
   "builds": [
@@ -266,22 +252,6 @@ This repo is deployed to Vercel as **two separate projects** from the same GitHu
   ]
 }
 ```
-Environment variables (Vercel dashboard → Settings → Environment Variables): `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`.
-
-**Frontend** — Root Directory: `frontend/dashboard`, Framework: Vite
-```json
-// frontend/dashboard/vercel.json
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-```
-This rewrite is required so client-side routes (e.g. `/auth/callback`) don't 404 on refresh/direct navigation.
-
-Environment variables: `VITE_API_URL=https://event-manager-app-backend-deploymen.vercel.app`
-
-Also required for Google sign-in to work: the deployed frontend URL must be added to both Supabase (Authentication → URL Configuration → Site URL / Redirect URLs) and the matching Google Cloud OAuth client's Authorized redirect URIs / JavaScript origins.
 
 ## 🧪 Testing
 
